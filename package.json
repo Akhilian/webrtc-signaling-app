@@ -3,6 +3,10 @@
     "express": "^4.17.1"
   },
   "scripts": {
-    "start": "DEBUG=myapp:* node app.js"
+    "start": "DEBUG=myapp:* node app.js",
+    "dev": "npx nodemon app.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
   }
 }
