@@ -1,12 +1,17 @@
 {
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "rxjs": "^6.5.5"
   },
   "scripts": {
     "start": "DEBUG=myapp:* node app.js",
-    "dev": "npx nodemon app.js"
+    "dev": "npx nodemon app.js",
+    "test": "jest"
   },
   "devDependencies": {
+    "jest": "^25.4.0",
     "nodemon": "^2.0.3"
   }
 }

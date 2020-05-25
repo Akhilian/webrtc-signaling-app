@@ -1,8 +1,23 @@
+const bodyParser = require('body-parser')
 const express = require('express')
-let app = express()
-const port = 5000
+const cors = require('cors')
 
-const routes = require('./application/routes')
+let app = express()
+app.use(bodyParser.json())
+app.use(cors())
+
+const port = process.env.PORT || 5000
+
+const routes = require('./routes')
+const EventBus = require('./services/EventBus')
+
+const eventBus = new EventBus()
+
+app.use(function (req, res, next) {
+    res.eventBus = eventBus
+
+    next()
+})
 
 app = routes(app)
 
