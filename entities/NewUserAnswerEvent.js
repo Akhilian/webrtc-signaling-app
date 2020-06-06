@@ -2,9 +2,7 @@ const VisioEvent = require('./VisioEvent')
 
 class NewUserAnswerEvent extends VisioEvent {
     constructor(from, to, answer) {
-        super('SOMEONE_IS_ANSWERING')
-        this.from = from;
-        this.to = to;
+        super('ANSWER', from, to)
         this.answer = answer;
     }
 }

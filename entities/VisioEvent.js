@@ -1,7 +1,9 @@
 class VisioEvent {
-    constructor(message) {
+    constructor(message, from, to) {
         this.dateEmitted = new Date()
         this.message = message
+        this.from = from
+        this.to = to
     }
 }
 
