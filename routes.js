@@ -30,7 +30,9 @@ stream.subscribe({
     next: (event) => {
         if(event.to) {
             const sendTo = clients.find((client) => client.id === event.to)
-            sendTo.res.write(`data: ${JSON.stringify(event)}\n\n`)
+            if(sendTo) {
+                sendTo.res.write(`data: ${JSON.stringify(event)}\n\n`)
+            }
         } else {
             clients.forEach(c => c.res.write(`data: ${JSON.stringify(event)}\n\n`))
         }
@@ -83,9 +85,7 @@ module.exports = (app) => {
         bridge.emit('event', new UpdatedListOfUserEvent(listOfClients));
         
         req.on('close', () => {
-            bridge.emit('event', new UserLeftEvent({ id: clientId }));
             clients = clients.filter(c => c.id !== clientId);
-
             const listOfClients = clients.reduce((acc, client) => {
                 acc.push(client.id)
                 return acc;
